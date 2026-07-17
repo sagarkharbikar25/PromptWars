@@ -229,10 +229,10 @@ How can I help you today?`,
   };
 
   const starterQuestions = [
-    { label: "♿ Wheelchair access?", text: "Where is the nearest wheelchair-accessible entry?" },
-    { label: "👜 Bag Policy?", text: "What is the bag policy for the tournament?" },
-    { label: "🚇 Live Transit Wait?", text: "How is the public transit running right now?" },
-    { label: "🌐 Habla Español?", text: "¿Cómo llegar a la Puerta 3?" }
+    { icon: "♿", label: "Wheelchair access?", text: "Where is the nearest wheelchair-accessible entry?" },
+    { icon: "👜", label: "Bag Policy?", text: "What is the bag policy for the tournament?" },
+    { icon: "🚇", label: "Live Transit Wait?", text: "How is the public transit running right now?" },
+    { icon: "🌐", label: "Habla Español?", text: "¿Cómo llegar a la Puerta 3?" }
   ];
 
   return (
@@ -343,14 +343,17 @@ How can I help you today?`,
                       textAlign: 'left',
                       color: 'var(--text-primary)',
                       padding: '10px 14px',
-                      fontSize: '12px',
+                      fontSize: '13px',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'space-between',
                       width: '100%'
                     }}
                   >
-                    <span>{q.label}</span>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                      <span style={{ fontSize: '16px' }}>{q.icon}</span>
+                      <span>{q.label}</span>
+                    </div>
                     <span style={{ fontSize: '10px', color: 'var(--text-muted)' }}>Send ↗</span>
                   </button>
                 ))}
