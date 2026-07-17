@@ -232,7 +232,7 @@ How can I help you today?`,
     { label: "♿ Wheelchair access?", text: "Where is the nearest wheelchair-accessible entry?" },
     { label: "👜 Bag Policy?", text: "What is the bag policy for the tournament?" },
     { label: "🚇 Live Transit Wait?", text: "How is the public transit running right now?" },
-    { label: "🇪🇸 Habla Español?", text: "¿Cómo llegar a la Puerta 3?" }
+    { label: "🌐 Habla Español?", text: "¿Cómo llegar a la Puerta 3?" }
   ];
 
   return (
@@ -338,27 +338,16 @@ How can I help you today?`,
                   <button 
                     key={idx}
                     onClick={() => handleSendMessage(q.text)}
+                    className="interactive-card"
                     style={{
                       textAlign: 'left',
-                      background: 'rgba(255, 255, 255, 0.03)',
-                      border: '1px solid var(--border-color)',
                       color: 'var(--text-primary)',
                       padding: '10px 14px',
-                      borderRadius: '10px',
-                      cursor: 'pointer',
                       fontSize: '12px',
-                      transition: 'all 0.2s',
                       display: 'flex',
                       alignItems: 'center',
-                      justifyContent: 'space-between'
-                    }}
-                    onMouseEnter={(e) => {
-                      e.currentTarget.style.background = 'rgba(255, 255, 255, 0.08)';
-                      e.currentTarget.style.borderColor = 'rgba(0, 242, 254, 0.3)';
-                    }}
-                    onMouseLeave={(e) => {
-                      e.currentTarget.style.background = 'rgba(255, 255, 255, 0.03)';
-                      e.currentTarget.style.borderColor = 'var(--border-color)';
+                      justifyContent: 'space-between',
+                      width: '100%'
                     }}
                   >
                     <span>{q.label}</span>
@@ -496,19 +485,12 @@ How can I help you today?`,
                 value={inputMessage}
                 onChange={(e) => setInputMessage(e.target.value)}
                 placeholder="Ask Genie (e.g. 'Is there wheelchair access at Gate 3?', '¿Cómo tomo el metro?')..."
+                className="interactive-field"
                 style={{
                   flex: 1,
-                  background: 'rgba(5, 8, 20, 0.6)',
-                  border: '1px solid var(--border-color)',
-                  color: 'var(--text-primary)',
                   padding: '14px 18px',
-                  borderRadius: '12px',
-                  fontSize: '14px',
-                  outline: 'none',
-                  transition: 'all 0.2s'
+                  fontSize: '14px'
                 }}
-                onFocus={(e) => e.target.style.borderColor = 'rgba(0, 242, 254, 0.5)'}
-                onBlur={(e) => e.target.style.borderColor = 'var(--border-color)'}
               />
               <button 
                 type="submit"
@@ -561,27 +543,14 @@ How can I help you today?`,
                   return (
                     <div 
                       key={g.id} 
-                      style={{
-                        padding: '16px',
-                        background: 'rgba(255, 255, 255, 0.02)',
-                        border: '1px solid var(--border-color)',
-                        borderRadius: '12px',
-                        cursor: 'pointer',
-                        transition: 'all 0.2s',
-                        boxShadow: g.status === 'Critical' ? '0 0 10px rgba(239,68,68,0.1)' : 'none'
-                      }}
-                      className={g.status === 'Critical' ? 'pulse-critical' : ''}
+                      className={`interactive-card ${g.status === 'Critical' ? 'pulse-critical' : ''}`}
                       onClick={() => {
                         setEditingGateId(g.id);
                         setTempOccupancy(g.occupancyRate);
                       }}
-                      onMouseEnter={(e) => {
-                        e.currentTarget.style.borderColor = 'rgba(255,255,255,0.15)';
-                        e.currentTarget.style.background = 'rgba(255, 255, 255, 0.04)';
-                      }}
-                      onMouseLeave={(e) => {
-                        e.currentTarget.style.borderColor = 'var(--border-color)';
-                        e.currentTarget.style.background = 'rgba(255, 255, 255, 0.02)';
+                      style={{
+                        padding: '16px',
+                        boxShadow: g.status === 'Critical' ? '0 0 10px rgba(239,68,68,0.1)' : 'none'
                       }}
                     >
                       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '8px' }}>
@@ -675,22 +644,19 @@ How can I help you today?`,
                     const color = crowdColors[z.crowdLevel];
 
                     return (
-                      <div key={z.id} style={{ padding: '12px', background: 'rgba(255, 255, 255, 0.01)', border: '1px solid var(--border-color)', borderRadius: '10px' }}>
+                      <div key={z.id} className="interactive-card" style={{ padding: '12px' }}>
                         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '6px' }}>
                           <span style={{ fontSize: '13px', fontWeight: 600 }}>{z.name.split(' (')[0]}</span>
                           <div style={{ display: 'flex', gap: '6px' }}>
                             <select 
                               value={z.crowdLevel} 
                               onChange={(e) => handleUpdateZoneCrowd(z.id, e.target.value as any)}
+                              className="interactive-field"
                               style={{ 
-                                background: 'rgba(0,0,0,0.5)', 
-                                border: '1px solid var(--border-color)', 
                                 color: color, 
                                 fontSize: '10px', 
-                                borderRadius: '4px',
                                 padding: '2px 4px',
-                                cursor: 'pointer',
-                                outline: 'none'
+                                cursor: 'pointer'
                               }}
                             >
                               <option value="Low">Low</option>
@@ -730,7 +696,7 @@ How can I help you today?`,
                   {transport.map((t) => {
                     const statusColor = t.status === 'Smooth' ? 'var(--color-success)' : t.status === 'Delayed' ? 'var(--color-warning)' : 'var(--color-danger)';
                     return (
-                      <div key={t.id} style={{ display: 'flex', gap: '12px', padding: '12px', background: 'rgba(255,255,255,0.01)', border: '1px solid var(--border-color)', borderRadius: '10px' }}>
+                      <div key={t.id} className="interactive-card" style={{ display: 'flex', gap: '12px', padding: '12px' }}>
                         <div style={{
                           width: '36px',
                           height: '36px',

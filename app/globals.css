@@ -90,21 +90,58 @@ body::after {
 
 /* Glassmorphism Cards */
 .glass-card {
-  background: var(--bg-card);
-  backdrop-filter: var(--glass-blur);
-  -webkit-backdrop-filter: var(--glass-blur);
-  border: 1px solid var(--border-color);
+  background: linear-gradient(135deg, rgba(10, 15, 36, 0.7) 0%, rgba(10, 15, 36, 0.4) 100%);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.05);
   border-radius: 16px;
-  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   overflow: hidden;
 }
 
 .glass-card:hover {
-  border-color: var(--border-hover);
-  background: var(--bg-card-hover);
-  box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.5), 0 0 15px rgba(0, 242, 254, 0.05);
+  border-color: rgba(0, 242, 254, 0.3);
+  background: linear-gradient(135deg, rgba(16, 23, 54, 0.8) 0%, rgba(10, 15, 36, 0.6) 100%);
+  box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.6), 0 0 20px rgba(0, 242, 254, 0.1);
+  transform: translateY(-3px);
+}
+
+/* Interactive Telemetry & Guide Cards */
+.interactive-card {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.interactive-card:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(0, 242, 254, 0.25);
+  box-shadow: 0 4px 20px rgba(0, 242, 254, 0.06);
   transform: translateY(-2px);
+}
+
+/* Input and Selection Fields */
+.interactive-field {
+  background: rgba(5, 8, 20, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  color: var(--text-primary);
+  border-radius: 12px;
+  outline: none;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.interactive-field:hover {
+  background: rgba(5, 8, 20, 0.8);
+  border-color: rgba(0, 242, 254, 0.25);
+}
+
+.interactive-field:focus {
+  background: rgba(5, 8, 20, 0.9);
+  border-color: rgba(0, 242, 254, 0.5);
+  box-shadow: 0 0 15px rgba(0, 242, 254, 0.15);
 }
 
 /* Typography styling */
