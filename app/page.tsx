@@ -77,6 +77,7 @@ How can I help you today?`,
   // Fetch initial insights
   useEffect(() => {
     fetchInsights();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleSendMessage = async (text: string) => {
