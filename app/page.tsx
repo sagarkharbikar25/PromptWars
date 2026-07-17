@@ -324,9 +324,39 @@ How can I help you today?`,
                 <Globe size={14} className="text-info" />
                 Automatic Multilingual
               </h4>
-              <p style={{ fontSize: '12px', color: 'var(--text-secondary)' }}>
-                Try asking in Spanish (Español), French (Français), German (Deutsch), or Hindi. The AI automatically replies in your language!
+              <p style={{ fontSize: '12px', color: 'var(--text-secondary)', lineHeight: '1.4' }}>
+                The AI automatically detects and replies in your language. Click a language pill below to test instantly:
               </p>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', marginTop: '10px' }}>
+                <button 
+                  onClick={() => handleSendMessage("¿Dónde está la entrada para sillas de ruedas?")}
+                  className="interactive-card"
+                  style={{ padding: '4px 8px', fontSize: '10px', color: 'var(--accent-cyan)', background: 'rgba(0, 242, 254, 0.05)', border: '1px solid rgba(0, 242, 254, 0.15)' }}
+                >
+                  Español 🇪🇸
+                </button>
+                <button 
+                  onClick={() => handleSendMessage("Où se trouve l'entrée accessible ?")}
+                  className="interactive-card"
+                  style={{ padding: '4px 8px', fontSize: '10px', color: 'var(--accent-cyan)', background: 'rgba(0, 242, 254, 0.05)', border: '1px solid rgba(0, 242, 254, 0.15)' }}
+                >
+                  Français 🇫🇷
+                </button>
+                <button 
+                  onClick={() => handleSendMessage("Wo ist der barrierefreie Eingang?")}
+                  className="interactive-card"
+                  style={{ padding: '4px 8px', fontSize: '10px', color: 'var(--accent-cyan)', background: 'rgba(0, 242, 254, 0.05)', border: '1px solid rgba(0, 242, 254, 0.15)' }}
+                >
+                  Deutsch 🇩🇪
+                </button>
+                <button 
+                  onClick={() => handleSendMessage("व्हीलचेयर के लिए प्रवेश द्वार कहाँ है?")}
+                  className="interactive-card"
+                  style={{ padding: '4px 8px', fontSize: '10px', color: 'var(--accent-cyan)', background: 'rgba(0, 242, 254, 0.05)', border: '1px solid rgba(0, 242, 254, 0.15)' }}
+                >
+                  हिन्दी 🇮🇳
+                </button>
+              </div>
             </div>
 
             <div>
