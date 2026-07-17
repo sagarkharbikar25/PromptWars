@@ -1,19 +1,19 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from 'react';
-import { 
-  MessageSquare, 
-  Send, 
-  AlertTriangle, 
-  Compass, 
-  HelpCircle, 
-  Activity, 
-  Users, 
-  ShieldAlert, 
-  Train, 
-  RotateCw, 
-  Sliders, 
-  Accessibility, 
+import {
+  MessageSquare,
+  Send,
+  AlertTriangle,
+  Compass,
+  HelpCircle,
+  Activity,
+  Users,
+  ShieldAlert,
+  Train,
+  RotateCw,
+  Sliders,
+  Accessibility,
   RefreshCw,
   Search,
   Globe
@@ -37,7 +37,7 @@ interface Recommendation {
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState<'fan' | 'ops'>('fan');
-  
+
   // Fan Assistant State
   const [messages, setMessages] = useState<Message[]>([
     {
@@ -132,7 +132,7 @@ How can I help you today?`,
       // Here we simulate the update or send the snapshot
       const response = await fetch('/api/insights');
       const data = await response.json();
-      
+
       setRecommendations(data.recommendations || []);
       setInsightsDemoMode(!!data.isDemo);
     } catch (err) {
@@ -156,7 +156,7 @@ How can I help you today?`,
 
     setGates(updatedGates);
     setEditingGateId(null);
-    
+
     // Auto trigger recommendations refresh to simulate real-time AI adaptability!
     // In a premium hackathon demo, editing occupancy and hitting Refresh shows live adapting advice.
     generateInteractiveRecommendation(updatedGates, zones);
@@ -165,12 +165,12 @@ How can I help you today?`,
   // Live client-side simulation logic to immediately update recommendations when user slides telemetry
   const generateInteractiveRecommendation = (currentGates: typeof gates, currentZones: typeof zones) => {
     setIsInsightsLoading(true);
-    
+
     // Simulate short network delay for premium feel
     setTimeout(() => {
-      const topGates = [...currentGates].sort((a,b) => b.occupancyRate - a.occupancyRate);
+      const topGates = [...currentGates].sort((a, b) => b.occupancyRate - a.occupancyRate);
       const criticalGate = topGates[0];
-      const clearGate = [...currentGates].sort((a,b) => a.occupancyRate - b.occupancyRate)[0];
+      const clearGate = [...currentGates].sort((a, b) => a.occupancyRate - b.occupancyRate)[0];
 
       const newRecommendations: Recommendation[] = [];
 
@@ -232,12 +232,12 @@ How can I help you today?`,
     { icon: "♿", label: "Wheelchair access?", text: "Where is the nearest wheelchair-accessible entry?" },
     { icon: "👜", label: "Bag Policy?", text: "What is the bag policy for the tournament?" },
     { icon: "🚇", label: "Live Transit Wait?", text: "How is the public transit running right now?" },
-    { icon: "🌐", label: "Habla Español?", text: "¿Cómo llegar a la Puerta 3?" }
+    { icon: "🌐", label: "Habla Espanol?", text: "Cómo llegar a la Puerta 3?" }
   ];
 
   return (
     <div style={{ minHeight: '80vh' }}>
-      
+
       {/* Introduction Hero Section */}
       <div style={{ textAlign: 'center', marginBottom: '40px' }} className="animate-slideup">
         <h2 style={{ fontSize: '38px', fontWeight: 'bold', marginBottom: '10px', fontFamily: 'var(--font-heading)' }}>
@@ -256,7 +256,7 @@ How can I help you today?`,
           padding: '4px',
           marginTop: '25px'
         }}>
-          <button 
+          <button
             onClick={() => setActiveTab('fan')}
             style={{
               padding: '10px 24px',
@@ -277,7 +277,7 @@ How can I help you today?`,
               Fan Assistant Chat
             </div>
           </button>
-          <button 
+          <button
             onClick={() => setActiveTab('ops')}
             style={{
               padding: '10px 24px',
@@ -303,10 +303,10 @@ How can I help you today?`,
 
       {/* Main Interfaces */}
       {activeTab === 'fan' ? (
-        
+
         // TAB A: FAN ASSISTANT INTERFACE
         <div className="dashboard-grid animate-slideup" style={{ gap: '30px' }}>
-          
+
           {/* Fan Guide Info Panel (Left) */}
           <div className="col-4 glass-card" style={{ padding: '24px', display: 'flex', flexDirection: 'column', gap: '20px' }}>
             <div>
@@ -335,7 +335,7 @@ How can I help you today?`,
               </h4>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
                 {starterQuestions.map((q, idx) => (
-                  <button 
+                  <button
                     key={idx}
                     onClick={() => handleSendMessage(q.text)}
                     className="interactive-card"
@@ -370,7 +370,7 @@ How can I help you today?`,
 
           {/* Chat Assistant Widget (Right) */}
           <div className="col-8 glass-card" style={{ display: 'flex', flexDirection: 'column', height: '620px' }}>
-            
+
             {/* Widget Header */}
             <div style={{
               padding: '20px 24px',
@@ -409,7 +409,7 @@ How can I help you today?`,
               background: 'rgba(5, 8, 20, 0.2)'
             }}>
               {messages.map((m) => (
-                <div 
+                <div
                   key={m.id}
                   style={{
                     alignSelf: m.role === 'user' ? 'flex-end' : 'flex-start',
@@ -421,8 +421,8 @@ How can I help you today?`,
                   }}
                 >
                   <div style={{
-                    background: m.role === 'user' 
-                      ? 'linear-gradient(135deg, rgba(6, 182, 212, 0.15) 0%, rgba(59, 130, 246, 0.15) 100%)' 
+                    background: m.role === 'user'
+                      ? 'linear-gradient(135deg, rgba(6, 182, 212, 0.15) 0%, rgba(59, 130, 246, 0.15) 100%)'
                       : 'rgba(255, 255, 255, 0.03)',
                     border: m.role === 'user'
                       ? '1px solid rgba(6, 182, 212, 0.3)'
@@ -447,7 +447,7 @@ How can I help you today?`,
                   }}>
                     <span suppressHydrationWarning>{m.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
                     {m.role === 'assistant' && (
-                      <span style={{ 
+                      <span style={{
                         color: m.isDemo ? 'var(--color-warning)' : 'var(--accent-cyan)',
                         background: m.isDemo ? 'rgba(245, 158, 11, 0.08)' : 'rgba(0, 242, 254, 0.08)',
                         padding: '1px 5px',
@@ -470,7 +470,7 @@ How can I help you today?`,
             </div>
 
             {/* Message Input Area */}
-            <form 
+            <form
               onSubmit={(e) => {
                 e.preventDefault();
                 handleSendMessage(inputMessage);
@@ -483,7 +483,7 @@ How can I help you today?`,
                 gap: '12px'
               }}
             >
-              <input 
+              <input
                 type="text"
                 value={inputMessage}
                 onChange={(e) => setInputMessage(e.target.value)}
@@ -495,7 +495,7 @@ How can I help you today?`,
                   fontSize: '14px'
                 }}
               />
-              <button 
+              <button
                 type="submit"
                 disabled={!inputMessage.trim() || isChatLoading}
                 className="glow-btn"
@@ -517,10 +517,10 @@ How can I help you today?`,
 
         // TAB B: OPERATIONS DASHBOARD INTERFACE
         <div className="dashboard-grid animate-slideup">
-          
+
           {/* Main Status Grid (Left) */}
           <div className="col-8" style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
-            
+
             {/* Gate Telemetry Panel */}
             <div className="glass-card" style={{ padding: '24px' }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
@@ -544,8 +544,8 @@ How can I help you today?`,
                   const color = statusColors[g.status];
 
                   return (
-                    <div 
-                      key={g.id} 
+                    <div
+                      key={g.id}
                       className={`interactive-card ${g.status === 'Critical' ? 'pulse-critical' : ''}`}
                       onClick={() => {
                         setEditingGateId(g.id);
@@ -578,10 +578,10 @@ How can I help you today?`,
                       {editingGateId === g.id ? (
                         <div onClick={(e) => e.stopPropagation()} style={{ marginTop: '10px' }}>
                           <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                            <input 
-                              type="range" 
-                              min="0" 
-                              max="100" 
+                            <input
+                              type="range"
+                              min="0"
+                              max="100"
                               value={tempOccupancy}
                               onChange={(e) => setTempOccupancy(Number(e.target.value))}
                               style={{ flex: 1, accentColor: 'var(--accent-cyan)' }}
@@ -589,13 +589,13 @@ How can I help you today?`,
                             <span style={{ fontSize: '12px', fontWeight: 'bold', width: '30px' }}>{tempOccupancy}%</span>
                           </div>
                           <div style={{ display: 'flex', gap: '6px', marginTop: '8px', justifyContent: 'flex-end' }}>
-                            <button 
+                            <button
                               onClick={() => setEditingGateId(null)}
                               style={{ padding: '2px 6px', background: 'rgba(255,255,255,0.05)', border: 'none', color: '#fff', fontSize: '10px', borderRadius: '4px', cursor: 'pointer' }}
                             >
                               Cancel
                             </button>
-                            <button 
+                            <button
                               onClick={() => handleUpdateGateOccupancy(g.id, tempOccupancy)}
                               style={{ padding: '2px 8px', background: 'var(--accent-cyan)', border: 'none', color: '#000', fontSize: '10px', fontWeight: 'bold', borderRadius: '4px', cursor: 'pointer' }}
                             >
@@ -629,7 +629,7 @@ How can I help you today?`,
 
             {/* Stadium Zones & Transit Grid */}
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(340px, 1fr))', gap: '24px' }}>
-              
+
               {/* Zones Panel */}
               <div className="glass-card" style={{ padding: '24px' }}>
                 <h3 style={{ fontSize: '16px', marginBottom: '16px', display: 'flex', alignItems: 'center', gap: '8px' }}>
@@ -651,13 +651,13 @@ How can I help you today?`,
                         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '6px' }}>
                           <span style={{ fontSize: '13px', fontWeight: 600 }}>{z.name.split(' (')[0]}</span>
                           <div style={{ display: 'flex', gap: '6px' }}>
-                            <select 
-                              value={z.crowdLevel} 
+                            <select
+                              value={z.crowdLevel}
                               onChange={(e) => handleUpdateZoneCrowd(z.id, e.target.value as any)}
                               className="interactive-field"
-                              style={{ 
-                                color: color, 
-                                fontSize: '10px', 
+                              style={{
+                                color: color,
+                                fontSize: '10px',
                                 padding: '2px 4px',
                                 cursor: 'pointer'
                               }}
@@ -731,7 +731,7 @@ How can I help you today?`,
 
           {/* AI Operational Insights Stream (Right Panel) */}
           <div className="col-4 glass-card" style={{ padding: '24px', display: 'flex', flexDirection: 'column', height: 'fit-content' }}>
-            
+
             {/* Header */}
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
               <div>
@@ -741,7 +741,7 @@ How can I help you today?`,
                 </h3>
                 <span style={{ fontSize: '11px', color: 'var(--text-secondary)' }}>Automated crowd management recommendations</span>
               </div>
-              <button 
+              <button
                 onClick={() => fetchInsights(gates, zones)}
                 disabled={isInsightsLoading}
                 style={{
@@ -774,8 +774,8 @@ How can I help you today?`,
                   const categoryBorder = rec.priority === 'High' ? 'border-danger' : rec.priority === 'Medium' ? 'border-warning' : 'border-success';
 
                   return (
-                    <div 
-                      key={i} 
+                    <div
+                      key={i}
                       className={`glass-card ${categoryBorder} animate-slideup`}
                       style={{
                         padding: '16px',
@@ -835,7 +835,7 @@ How can I help you today?`,
         </div>
 
       )}
-      
+
     </div>
   );
 }
