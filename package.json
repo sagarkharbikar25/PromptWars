@@ -10,16 +10,16 @@
   },
   "dependencies": {
     "next": "15.0.3",
-    "react": "19.0.0-rc-6625d9f585-20241028",
-    "react-dom": "19.0.0-rc-6625d9f585-20241028",
+    "react": "19.0.0-rc-66855b96-20241106",
+    "react-dom": "19.0.0-rc-66855b96-20241106",
     "lucide-react": "^0.460.0",
     "@supabase/supabase-js": "^2.46.1"
   },
   "devDependencies": {
     "typescript": "^5",
     "@types/node": "^20",
-    "@types/react": "19.0.0-rc-6625d9f585-20241028",
-    "@types/react-dom": "19.0.0-rc-6625d9f585-20241028",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
     "eslint": "^8",
     "eslint-config-next": "15.0.3"
   }
