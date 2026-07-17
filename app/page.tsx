@@ -445,7 +445,7 @@ How can I help you today?`,
                     alignItems: 'center',
                     gap: '6px'
                   }}>
-                    <span>{m.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
+                    <span suppressHydrationWarning>{m.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
                     {m.role === 'assistant' && (
                       <span style={{ 
                         color: m.isDemo ? 'var(--color-warning)' : 'var(--accent-cyan)',
